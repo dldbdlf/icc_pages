@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 당첨</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #fdf6e3;
+    }
+    h1 {
+      font-size: 2em;
+      color: #2c3e50;
+    }
+    p {
+      font-size: 1.2em;
+      color: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">로딩 중...</h1>
+  <p>🎊 중구에서 좋은 추억 남기시길 바랍니다! 🎊</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const n = parseInt(params.get('n'));
+
+    const title = document.getElementById("title");
+
+    if (!isNaN(n) && n >= 1 && n <= 100) {
+      title.textContent = `🎉 ${n}/100번째 당첨자를 축하드립니다!`;
+    } else {
+      title.textContent = "⚠️ 올바르지 않은 접속입니다.";
+    }
+  </script>
+</body>
+</html>

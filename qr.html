@@ -5,35 +5,113 @@
   <title>이벤트 당첨</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Arial', sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      background-color: #fdf6e3;
+      background-color: #7c84c1;
+      color: #333;
     }
-    h1 {
-      font-size: 2em;
-      color: #2c3e50;
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: transparent;
+      padding: 20px;
     }
+
+    .box {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      box-shadow: 5px 5px 0px #d5c3a5;
+    }
+
+    .title {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #1f2a4d;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #5a6b9b;
+      margin-top: 10px;
+    }
+
+    .section-title {
+      background-color: #34495e;
+      color: white;
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      font-size: 1em;
+      line-height: 1.6em;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .gray-text {
+      color: gray;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
     p {
-      font-size: 1.2em;
-      color: #34495e;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <h1 id="title">로딩 중...</h1>
-  <p>🎊 중구에서 좋은 추억 남기시길 바랍니다! 🎊</p>
+  <div class="container">
+    <div class="box">
+      <div class="title">🎉 <span id="title">축하합니다!</span></div>
+      <div class="subtitle">중구에서 좋은 추억 남기시길 바랍니다.</div>
+    </div>
+
+    <div class="box">
+      <div class="section-title">🎁 경품수령 안내</div>
+      <p class="info">
+        📍 경품 수령처:<br>
+        <span class="highlight">인천 중구 관광안내소</span><br>
+        (유효기간: <span class="highlight">2024.08.31</span>까지)
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="section-title">📢 진행 중 이벤트</div>
+      <p class="info">
+        고향사랑기부제 홍보 릴스 찍고,<br>
+        인천 파라다이스 시티 호텔 숙박하자!
+      </p>
+      <p class="info gray-text">
+        중구청 인스타그램<br>
+        https://www.instagram.com/incheon.junggu/
+      </p>
+      <img src="bd38d12e-9d9a-46c4-8fdf-a762e0bd216c.png" alt="파라다이스 호텔 이미지">
+    </div>
+  </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const n = parseInt(params.get('n'));
-
     const title = document.getElementById("title");
 
     if (!isNaN(n) && n >= 1 && n <= 100) {
-      title.textContent = `🎉 ${n}/100번째 당첨자를 축하드립니다!`;
+      title.textContent = `${n}/100번째 당첨자입니다!`;
     } else {
-      title.textContent = "⚠️ 올바르지 않은 접속입니다.";
+      title.textContent = "올바르지 않은 접속입니다.";
     }
   </script>
 </body>

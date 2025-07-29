@@ -76,11 +76,11 @@
 <body>
   <div class="container">
     <div class="box">
-      <div class="title">🎉 <span id="title">축하합니다!</span></div>
-      <div class="subtitle">중구에서 좋은 추억 남기시길 바랍니다.</div>
+      <div class="title" id="title">로딩 중...</div>
+      <div class="subtitle" id="subtitle"></div>
     </div>
 
-    <div class="box">
+    <div class="box" id="prizeBox" style="display: none;">
       <div class="section-title">🎁 경품수령 안내</div>
       <p class="info">
         📍 경품 수령처:<br>
@@ -89,29 +89,47 @@
       </p>
     </div>
 
-    <div class="box">
-      <div class="section-title">📢 진행 중 이벤트</div>
+    <div class="box" id="giftBox">
+      <div class="section-title">🍺 이벤트 경품</div>
       <p class="info">
-        고향사랑기부제 홍보 릴스 찍고,<br>
-        인천 파라다이스 시티 호텔 숙박하자!
+        인천에서만 맛볼 수 있는<br>
+        <span class="highlight">개항로 맥주 & 인천 앞바다 사이다!</span>
       </p>
-      <p class="info gray-text">
-        중구청 인스타그램<br>
-        https://www.instagram.com/incheon.junggu/
-      </p>
-      <img src="https://dldbdlf.github.io/icc_pages/KakaoTalk_20250725_200529666_01.png" alt="파라다이스 호텔 이미지" style="width:100%; border-radius:10px;">
+      <img id="eventImage" src="" alt="이벤트 경품 이미지">
     </div>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const n = parseInt(params.get('n'));
-    const title = document.getElementById("title");
+    const titleEl = document.getElementById("title");
+    const subtitleEl = document.getElementById("subtitle");
+    const prizeBox = document.getElementById("prizeBox");
+    const eventImage = document.getElementById("eventImage");
+    const giftBox = document.getElementById("giftBox");
 
-    if (!isNaN(n) && n >= 1 && n <= 100) {
-      title.textContent = `${n}/100번째 당첨자입니다!`;
+    if (!isNaN(n) && n >= 1 && n <= 50) {
+      if (n <= 10) {
+        // 당첨
+        titleEl.textContent = `🎉 ${n}/50번째 당첨자입니다!`;
+        subtitleEl.textContent = "중구에서 좋은 추억 남기시길 바랍니다.";
+        prizeBox.style.display = "block";
+
+        // 랜덤 이미지 선택
+        const images = ["beer.png", "cider.png"];
+        const selected = images[Math.floor(Math.random() * images.length)];
+        eventImage.src = `https://dldbdlf.github.io/icc_pages/${selected}`;
+        eventImage.alt = selected === "beer.png" ? "개항로 맥주" : "인천 앞바다 사이다";
+      } else {
+        // 꽝
+        titleEl.textContent = `😢 ${n}/50번째, 아쉽지만 당첨되지 않았습니다.`;
+        subtitleEl.textContent = "다음 기회를 노려보세요!";
+        giftBox.style.display = "none";  // 이미지 박스 숨기기
+      }
     } else {
-      title.textContent = "올바르지 않은 접속입니다.";
+      titleEl.textContent = "올바르지 않은 접속입니다.";
+      subtitleEl.textContent = "";
+      giftBox.style.display = "none";
     }
   </script>
 </body>
